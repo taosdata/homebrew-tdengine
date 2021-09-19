@@ -18,7 +18,7 @@ class Tdengine < Formula
     #fix link
     rm_rf HOMEBREW_PREFIX/"lib/libtaos.1.dylib"
     rm_rf HOMEBREW_PREFIX/"lib/libtaos.dylib"
-    ln_sf prefix/"driver/libtaos.${verNumber}.dylib", HOMEBREW_PREFIX/"lib/libtaos.1.dylib"
+    ln_sf prefix/"driver/libtaos.2.2.0.0.dylib", HOMEBREW_PREFIX/"lib/libtaos.1.dylib"
     ln_sf HOMEBREW_PREFIX/"lib/libtaos.1.dylib", HOMEBREW_PREFIX/"lib/libtaos.dylib"
  end
  
