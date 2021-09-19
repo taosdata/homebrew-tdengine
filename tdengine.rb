@@ -1,6 +1,3 @@
-# Documentation: https://docs.brew.sh/Formula-Cookbook
-#                https://rubydoc.brew.sh/Formula
-# PLEASE REMOVE ALL GENERATED COMMENTS BEFORE SUBMITTING YOUR PULL REQUEST!
 class Tdengine < Formula
   desc "An open-source big data platform designed and optimized for the Internet of Things (IoT)."
   homepage "https://github.com/taosdata/TDengine"
@@ -9,17 +6,21 @@ class Tdengine < Formula
   license "AGPL-3.0"
 
  depends_on "cmake" => :build
- uses_from_macos "curl"
- uses_from_macos "cyrus-sasl"
- uses_from_macos "libedit"
- uses_from_macos "zlib"
+
  def install
-     system "cmake",".",*std_cmake_args
-     system "cmake","--build","."
-     system "make"
-     system "make","install"
-     #system "./makelink.sh"
-end
+    system "cmake", ".",*std_cmake_args
+    system "cmake", "--build","."
+    system "make"
+    system "make", "install"
+ end
+ 
+ def post_install
+    #fix link
+    rm_rf HOMEBREW_PREFIX/"lib/libtaos.1.dylib"
+    rm_rf HOMEBREW_PREFIX/"lib/libtaos.dylib"
+    ln_sf prefix/"driver/libtaos.${verNumber}.dylib", HOMEBREW_PREFIX/"lib/libtaos.1.dylib"
+    ln_sf HOMEBREW_PREFIX/"lib/libtaos.1.dylib", HOMEBREW_PREFIX/"lib/libtaos.dylib"
+ end
  
  plist_options :manual => "tdengine start"
  
@@ -34,12 +35,12 @@ end
      <string>#{plist_name}</string>
      <key>ProgramArguments</key>
      <array>
-       <string>/usr/local/cellar/tdengine/2.2.0.0/bin/taosd</string>
+       <string>/usr/local/cellar/tdengine/${verNumber}/bin/taosd</string>
      </array>
      <key>RunAtLoad</key>
      <true/>
      <key>WorkingDirectory</key>
-     <string>/usr/local/cellar/tdengine/2.2.0.0/data</string>
+     <string>/usr/local/var/lib/taos</string>
    </dict>
    </plist>
    EOS
