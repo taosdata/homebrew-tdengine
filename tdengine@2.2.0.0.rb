@@ -6,6 +6,10 @@ class TdengineAT2200 < Formula
   license "AGPL-3.0"
 
  depends_on "cmake" => :build
+ 
+ def datadir
+    var/"lib/taos"
+ end
 
  def install
     system "cmake", ".",*std_cmake_args
@@ -35,12 +39,13 @@ class TdengineAT2200 < Formula
      <string>#{plist_name}</string>
      <key>ProgramArguments</key>
      <array>
-       <string>/usr/local/cellar/tdengine/${verNumber}/bin/taosd</string>
+       <string>#{opt_bin}/taosd</string>
+       <string>--datadir=#{datadir}</string>
      </array>
      <key>RunAtLoad</key>
      <true/>
      <key>WorkingDirectory</key>
-     <string>/usr/local/var/lib/taos</string>
+     <string>#{datadir}</string>
    </dict>
    </plist>
    EOS
