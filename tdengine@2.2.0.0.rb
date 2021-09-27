@@ -1,11 +1,15 @@
-class Tdengine < Formula
+class TdengineAT2200 < Formula
   desc "An open-source big data platform designed and optimized for the Internet of Things (IoT)."
   homepage "https://github.com/taosdata/TDengine"
   url "https://raw.githubusercontent.com/hyy1223/homebrew-tdengine/main/TDengine-2.2.0.0.tar.gz"
-  sha256 "065ce90541307dd93f33d2b7104a83aa87b6b3cee7b6df1d6ee27736223764ad"
+  sha256 "378dabc8cdcbdcbcc33c56e584083fb6b75cb9077a6668042c677dc5d0c3005c"
   license "AGPL-3.0"
 
  depends_on "cmake" => :build
+ 
+ def datadir
+    var/"lib/taos"
+ end
 
  def install
     system "cmake", ".",*std_cmake_args
@@ -18,7 +22,7 @@ class Tdengine < Formula
     #fix link
     rm_rf HOMEBREW_PREFIX/"lib/libtaos.1.dylib"
     rm_rf HOMEBREW_PREFIX/"lib/libtaos.dylib"
-    ln_sf prefix/"driver/libtaos.2.2.0.0.dylib", HOMEBREW_PREFIX/"lib/libtaos.1.dylib"
+    ln_sf prefix/"driver/libtaos.dylib", HOMEBREW_PREFIX/"lib/libtaos.1.dylib"
     ln_sf HOMEBREW_PREFIX/"lib/libtaos.1.dylib", HOMEBREW_PREFIX/"lib/libtaos.dylib"
  end
  
@@ -35,12 +39,13 @@ class Tdengine < Formula
      <string>#{plist_name}</string>
      <key>ProgramArguments</key>
      <array>
-       <string>/usr/local/cellar/tdengine/${verNumber}/bin/taosd</string>
+       <string>#{opt_bin}/taosd</string>
+       <string>--datadir=#{datadir}</string>
      </array>
      <key>RunAtLoad</key>
      <true/>
      <key>WorkingDirectory</key>
-     <string>/usr/local/var/lib/taos</string>
+     <string>#{datadir}</string>
    </dict>
    </plist>
    EOS
