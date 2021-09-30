@@ -26,7 +26,7 @@ class Tdengine < Formula
     ln_sf HOMEBREW_PREFIX/"lib/libtaos.1.dylib", HOMEBREW_PREFIX/"lib/libtaos.dylib"
  end
  
- plist_options :manual => "tdengine start"
+ plist_options :manual => "taosd"
  
  def plist; <<~EOS
    <?xml version="1.0" encoding="UTF-8"?>
