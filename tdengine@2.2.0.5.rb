@@ -2,7 +2,7 @@ class TdengineAT2205 < Formula
   desc "An open-source big data platform designed and optimized for the Internet of Things (IoT)."
   homepage "https://github.com/taosdata/TDengine"
   url "https://github.com/sangshuduo/TDengine/archive/refs/tags/ver-2.2.0.5-homebrew.tar.gz"
-  sha256 "95bf507e74459fd60b5ee3bdf5ca57244bcfad4f38d3548351e24736055f2c52"
+  sha256 "fb149a141956c685da870b10ddaa285941d21b316afdd5df422a4d3f470b3f27"
   license "AGPL-3.0"
 
  depends_on "cmake" => :build
