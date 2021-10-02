@@ -1,8 +1,8 @@
-class TdengineAT2200 < Formula
+class TdengineAT2205 < Formula
   desc "An open-source big data platform designed and optimized for the Internet of Things (IoT)."
   homepage "https://github.com/taosdata/TDengine"
-  url "https://raw.githubusercontent.com/hyy1223/homebrew-tdengine/main/TDengine-2.2.0.0.tar.gz"
-  sha256 "fcc5e775810ff94b19be6fb78f1dda560573f0592f089f48f60d19ae636fb149"
+  url "https://github.com/sangshuduo/TDengine/archive/refs/tags/ver-2.2.0.5-homebrew.tar.gz"
+  sha256 "fb149a141956c685da870b10ddaa285941d21b316afdd5df422a4d3f470b3f27"
   license "AGPL-3.0"
 
  depends_on "cmake" => :build
@@ -22,7 +22,7 @@ class TdengineAT2200 < Formula
     #fix link
     rm_rf HOMEBREW_PREFIX/"lib/libtaos.1.dylib"
     rm_rf HOMEBREW_PREFIX/"lib/libtaos.dylib"
-    ln_sf prefix/"driver/libtaos.dylib", HOMEBREW_PREFIX/"lib/libtaos.1.dylib"
+    ln_sf prefix/"driver/libtaos.1.dylib", HOMEBREW_PREFIX/"lib/libtaos.1.dylib"
     ln_sf HOMEBREW_PREFIX/"lib/libtaos.1.dylib", HOMEBREW_PREFIX/"lib/libtaos.dylib"
  end
  
