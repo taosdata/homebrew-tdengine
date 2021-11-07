@@ -1,4 +1,4 @@
-class Tdengine < Formula
+class TdengineAT2213 < Formula
   desc "An open-source big data platform designed and optimized for the Internet of Things (IoT)."
   homepage "https://github.com/taosdata/TDengine"
   url "https://github.com/taosdata/TDengine/archive/refs/tags/ver-2.0.1.3.tar.gz"
