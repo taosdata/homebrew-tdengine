@@ -1,4 +1,5 @@
 class TdengineAT2310 < Formula
+  env :std
   desc "An open-source big data platform designed and optimized for the Internet of Things (IoT)."
   homepage "https://github.com/taosdata/TDengine"
   url "https://github.com/taosdata/TDengine/archive/refs/tags/ver-2.3.1.0.tar.gz"
@@ -13,7 +14,6 @@ class TdengineAT2310 < Formula
  
  def install
     system "cmake", ".",*std_cmake_args
-    system "cmake", "--build","."
     system "make"
     system "make", "install"
  end
