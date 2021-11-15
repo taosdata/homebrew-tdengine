@@ -1,8 +1,9 @@
 class Tdengine < Formula
+  env :std
   desc "An open-source big data platform designed and optimized for the Internet of Things (IoT)."
   homepage "https://github.com/taosdata/TDengine"
-  url "https://github.com/sangshuduo/TDengine/archive/refs/tags/ver-2.2.0.5-homebrew.tar.gz"
-  sha256 "fb149a141956c685da870b10ddaa285941d21b316afdd5df422a4d3f470b3f27"
+  url "https://github.com/taosdata/TDengine/archive/refs/tags/ver-2.3.1.0.tar.gz"
+  sha256 "20e7a52b81acd2bcd1aca671e9fbf8024917c862d0a1fd7fa3ae210d21b5d455"
   license "AGPL-3.0"
 
  depends_on "cmake" => :build
@@ -13,7 +14,6 @@ class Tdengine < Formula
  
  def install
     system "cmake", ".",*std_cmake_args
-    system "cmake", "--build","."
     system "make"
     system "make", "install"
  end
@@ -22,7 +22,7 @@ class Tdengine < Formula
     #fix link
     rm_rf HOMEBREW_PREFIX/"lib/libtaos.1.dylib"
     rm_rf HOMEBREW_PREFIX/"lib/libtaos.dylib"
-    ln_sf prefix/"driver/libtaos.dylib", HOMEBREW_PREFIX/"lib/libtaos.1.dylib"
+    ln_sf prefix/"driver/libtaos.1.dylib", HOMEBREW_PREFIX/"lib/libtaos.1.dylib"
     ln_sf HOMEBREW_PREFIX/"lib/libtaos.1.dylib", HOMEBREW_PREFIX/"lib/libtaos.dylib"
  end
  

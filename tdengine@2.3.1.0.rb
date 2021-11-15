@@ -1,8 +1,9 @@
-class TdengineAT2300 < Formula
+class TdengineAT2310 < Formula
+  env :std
   desc "An open-source big data platform designed and optimized for the Internet of Things (IoT)."
   homepage "https://github.com/taosdata/TDengine"
-  url "https://github.com/taosdata/TDengine/archive/refs/tags/ver-2.3.0.0.tar.gz"
-  sha256 "cea0b21758e22288eec5013ad85b508d15cd6c04c3902d9e576755fa61d5c40a"
+  url "https://github.com/taosdata/TDengine/archive/refs/tags/ver-2.3.1.0.tar.gz"
+  sha256 "20e7a52b81acd2bcd1aca671e9fbf8024917c862d0a1fd7fa3ae210d21b5d455"
   license "AGPL-3.0"
 
  depends_on "cmake" => :build
@@ -13,7 +14,6 @@ class TdengineAT2300 < Formula
  
  def install
     system "cmake", ".",*std_cmake_args
-    system "cmake", "--build","."
     system "make"
     system "make", "install"
  end
